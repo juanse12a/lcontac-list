@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Contactos</title>
+  </head>
+  <body>
+    <script>
+      // Definir un array para almacenar los contactos predeterminados
+      const contactosPredeterminados = [
+        {
+          nombre: "Juan",
+          telefono: "123-456-7890",
+          correo: "juan@example.com",
+        },
+        {
+          nombre: "María",
+          telefono: "987-654-3210",
+          correo: "maria@example.com",
+        },
+      ];
+
+      // Definir un array para almacenar la lista de contactos
+      const listaDeContactos = [...contactosPredeterminados];
+
+      // Función para agregar un contacto a la lista
+      function agregarContacto(nombre, telefono, correo) {
+        const contacto = {
+          nombre,
+          telefono,
+          correo,
+        };
+        listaDeContactos.push(contacto);
+        console.log(`El contacto "${nombre}" ha sido agregado.`);
+      }
+
+      // Función para eliminar un contacto por nombre
+      function eliminarContacto(nombre) {
+        const indice = listaDeContactos.findIndex(
+          (contacto) => contacto.nombre === nombre
+        );
+        if (indice !== -1) {
+          const contactoEliminado = listaDeContactos.splice(indice, 1)[0];
+          console.log(`El contacto "${nombre}" ha sido eliminado.`);
+          return contactoEliminado;
+        } else {
+          console.log(`No se encontró el contacto "${nombre}".`);
+          return null;
+        }
+      }
+
+      // Función para buscar un contacto por nombre
+      function buscarContacto(nombre) {
+        const contacto = listaDeContactos.find(
+          (contacto) => contacto.nombre === nombre
+        );
+        if (contacto) {
+          console.log(
+            `Nombre: ${contacto.nombre}, Teléfono: ${contacto.telefono}, Correo: ${contacto.correo}`
+          );
+        } else {
+          console.log(`No se encontró el contacto "${nombre}".`);
+        }
+      }
+
+      // Ejemplos de uso
+      agregarContacto("Pedro", "555-123-4567", "pedro@example.com");
+      eliminarContacto("María");
+      buscarContacto("Juan");
+      buscarContacto("María"); // Intenta buscar un contacto que ha sido eliminado
+    </script>
+  </body>
+</html>
